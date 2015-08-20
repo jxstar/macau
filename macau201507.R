@@ -317,7 +317,7 @@ resplot(dmjp,predict.result)
 
 ufit=lm(useformula,data=na.omit(usedata))
 smfit=summary(ufit)
-(predict.result=predict(ufit,newdata=usedata[which(usedata$year==target.year),])+dmjp[which(usedata$year==(target.year-1)),tm])
+(predict.result=predict(ufit,newdata=usedata[which(usedata$year==target.year),])+dmjp[which(dmjp$year==(target.year-1)),tm])
 usedata[which(usedata$year==target.year),tm]=predict(ufit,newdata=usedata[which(usedata$year==target.year),])
 usedata$prediction=predict(ufit,newdata=usedata)
 usedata$error=(usedata$prediction-usedata[,tm])/dmjp[,tm]
@@ -375,10 +375,10 @@ sigma=apply(sjp.data,2,function (x) {return(var(x,na.rm=T))})
 #                    usedata[-which(usedata$year==target.year),um])+usedata[which(usedata$year==target.year),um]
 usedata
 predict.result=usedata[which(usedata$year==(target.year-1)),tm]-usedata[which(usedata$year==(target.year-1)),um]+
-               usedata[which(usedata$year==target.year),um]+dmjp[which(usedata$year==(target.year-1)),tm]
+               usedata[which(usedata$year==target.year),um]+dmjp[which(dmjp$year==(target.year-1)),tm]
 
 prange=range(usedata[-which(usedata$year==(target.year)),tm]-usedata[-which(usedata$year==(target.year)),um]+
-             usedata[which(usedata$year==target.year),um],na.rm=T)+dmjp[which(usedata$year==(target.year-1)),tm]
+             usedata[which(usedata$year==target.year),um],na.rm=T)+dmjp[which(dmjp$year==(target.year-1)),tm]
 
 #Diff12(2015.7)=Diff12(2014.7)-Diff12(2014.6)+Diff12(2015.6)
 
